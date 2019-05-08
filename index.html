@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html lang="de">
+	<head>
+		<title> Karteikarten </title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+
+	<body>
+
+		<div id="Vorderseite" onclick="test()">
+			<h1> Yolo </h1>
+		</div>
+
+		<div id="Rückseite" class="hidden" onclick="test2()">
+			<h1> You Only live once </h1>
+		</div>
+
+
+	</body>
+
+	<script type="text/javascript">
+		function test() {
+			document.getElementById("Vorderseite").classList.add("hidden");
+			document.getElementById("Rückseite").classList.remove("hidden");
+		}
+
+		function test2() {
+			document.getElementById("Rückseite").classList.add("hidden");
+			document.getElementById("Vorderseite").classList.remove("hidden");
+		}
+
+	</script>
+
+
+</html>

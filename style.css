@@ -1,0 +1,25 @@
+*{
+	margin: 0;
+	padding: 0;	
+}
+
+#Vorderseite {
+	display: block;
+	height: 98vh;
+	width: 98vw;
+	border: solid red 10px;
+}
+
+#Rückseite {
+	display: block;
+	height: 98vh;
+	width: 98vw;
+	border: solid blue 10px;
+}
+
+.hidden {
+	visibility: hidden;
+	position: absolute;
+	top: -9999px;
+	left: -9999px;
+}
