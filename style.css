@@ -3,21 +3,76 @@
 	padding: 0;	
 }
 
-#Vorderseite {
-	display: block;
-	height: 98vh;
-	width: 98vw;
-	border: solid red 10px;
+header{
+	position: absolute;
+	width: 70vw;
+	margin-left: 15vw;
+	height: 7.5vh;
+	background-color: lightgrey;
+	/* border: solid yellow 1px; */
 }
 
-#Rückseite {
-	display: block;
-	height: 98vh;
-	width: 98vw;
-	border: solid blue 10px;
+#Logo{
+	float: left;
 }
 
-.hidden {
+#Pointer {
+	float: left;
+}
+
+nav{	
+}
+
+#Vorderseite{
+	display: block;
+	height: 85vh;
+	width: 100vw;
+	border-bottom: solid red 10px;
+}
+
+#Vorderseite p{
+	font-size: 6vh;
+	width: 70vw;
+	margin-left: 15vw;
+	padding-top: 35vh;
+	text-align: center;
+	text-decoration: bold;
+
+}
+
+#Rückseite{
+	display: block;
+	height: 85vh;
+	width: 100vw;
+	border-bottom: solid blue 10px;
+}
+
+#Rückseite p{
+	font-size: 4vh;
+	width: 85vw;
+	margin-left: 7.5vw;
+	padding-top: 20vh;
+}
+
+#Falsch{
+	float: left;
+	border: solid black 1px;
+	margin-top: 5vh;
+	margin-left: 20vw;
+	width: 20vw;
+	height: 5vh;
+}
+
+#Richtig{
+	float: left;
+	border: solid black 1px;
+	margin-top: 5vh;
+	margin-left: 20vw;
+	width: 20vw;
+	height: 5vh;
+}
+
+.hidden{
 	visibility: hidden;
 	position: absolute;
 	top: -9999px;
