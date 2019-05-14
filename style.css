@@ -5,8 +5,7 @@
 
 header{
 	position: absolute;
-	width: 70vw;
-	margin-left: 15vw;
+	width: 100vw;
 	height: 7.5vh;
 	background-color: lightgrey;
 	/* border: solid yellow 1px; */
@@ -14,24 +13,44 @@ header{
 
 #Logo{
 	float: left;
+	margin-left: 2vw;
+	margin-top: 1vh;
+	width: 20vw;
 }
 
 #Pointer {
 	float: left;
+	width: 20vw;
+	margin-left: 18vw;
+	text-align: center;
+	font-size: 6vh;
 }
 
-nav{	
+#Navigation{
+	display: block;
+	float: left;
+	height: 2vw;
+	width: 2vw;
+	border-radius: 1vw;
+	background-color: red;
+	margin-top: 1.75vh;
+	margin-left: 35vw;
+}
+
+nav{
+	display: none;
+	font-size: 20px;	
 }
 
 #Vorderseite{
 	display: block;
 	height: 85vh;
 	width: 100vw;
-	border-bottom: solid red 10px;
+	/* border-bottom: solid red 10px; */
 }
 
 #Vorderseite p{
-	font-size: 6vh;
+	font-size: 8vh;
 	width: 70vw;
 	margin-left: 15vw;
 	padding-top: 35vh;
@@ -44,32 +63,33 @@ nav{
 	display: block;
 	height: 85vh;
 	width: 100vw;
-	border-bottom: solid blue 10px;
+	/* border-bottom: solid blue 10px; */
 }
 
 #Rückseite p{
 	font-size: 4vh;
 	width: 85vw;
 	margin-left: 7.5vw;
-	padding-top: 20vh;
+	padding-top: 30vh;
+	text-align: justify;
 }
 
 #Falsch{
 	float: left;
-	border: solid black 1px;
-	margin-top: 5vh;
-	margin-left: 20vw;
-	width: 20vw;
-	height: 5vh;
+	width: 49.5vw;
+	height: 13.01vh;
+	border-top: solid black 2vh;
+	border-right: solid black 1vw;
+	background-color: red;
+
 }
 
 #Richtig{
 	float: left;
-	border: solid black 1px;
-	margin-top: 5vh;
-	margin-left: 20vw;
-	width: 20vw;
-	height: 5vh;
+	width: 49.51vw;
+	height: 13.01vh;
+	border-top: solid black 2vh;
+	background-color: green;
 }
 
 .hidden{
@@ -78,3 +98,37 @@ nav{
 	top: -9999px;
 	left: -9999px;
 }
+
+/* Optimierung für Mobilgeräte */
+
+	@media screen and (max-width: 1000px) {
+		#Logo{
+			width: 5vw;
+		}
+
+		#Pointer{
+			font-size: 4vh;
+			margin-top: 1.5vh;
+			margin-left: 28vw;
+		}
+
+		#Navigation {
+			float: left;
+			width: 3vh;
+			height: 3vh;
+			border-radius: 1.5vh;
+			margin-left: 35vw;
+			margin-top: 2vh;
+		}
+
+
+		#Vorderseite p {
+			font-size: 4vh;
+			padding-top: 40vh;
+		}
+
+		#Rückseite p{
+			font-size: 2.5vh;
+			padding-top: 25vh;
+		}
+	}

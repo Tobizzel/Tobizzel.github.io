@@ -10,15 +10,21 @@
 
 		<header>
 			<div id="Logo">
-				<h1> Platzhalter </h1>
+				<svg width="50" viewBox="0 0 91 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+					<path d="M72.1965 37.424C56.0377 39.3822 24.1551 38.0509 11.6451 37.2605C7.82659 37.0193 10.2773 31.0073 14.0984 28.0561C23.0505 21.1422 30.8541 16.7796 46.6071 15.6903C77.8333 13.531 82.2436 21.9996 66.8685 22.5632C25.2108 24.0903 18.6504 11.1724 9.58617 14.1014C-0.452962 17.3455 1.48421 45.6964 7.08907 48.5405C19.7141 54.9469 80.1052 54.5711 85.7965 47.2748C89.7432 42.2151 90.1716 14.5585 82.4741 8.32601C74.062 1.51499 32.4803 2.0718 25.3703 5.32471C4.728 14.7688 23.3092 64.2914 23.3098 87.8098C27.2194 141.597 24.7645 100" stroke="black" stroke-width="4" stroke-linecap="round"/>
+				</svg>
+
 			</div>
 
 			<div id="Pointer">
-				<h1> Karteikarten </h1>
+				<p> Karteikarten </p>
 			</div>
 
+			<div id ="Navigation">
+			
+			</div>
 			<nav>
-				<h1> Platzhalter </h1>
+					<h1> Platzhalter </h1>
 			</nav>
 
 		</header>
@@ -53,6 +59,19 @@
 			document.getElementById("Vorderseite").classList.remove("hidden");
 		}
 
+	</script>
+
+	<script>
+		// Register the service worker
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
+		    // Registration was successful
+		    console.log('ServiceWorker registration successful with scope: ', registration.scope);
+		}).catch(function(err) {
+		    // registration failed :(
+		    	console.log('ServiceWorker registration failed: ', err);
+		    });
+		}
 	</script>
 
 
