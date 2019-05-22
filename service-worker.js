@@ -8,15 +8,16 @@ const offlineUrl = 'offline.html';
 
 this.addEventListener('install', event => {
   event.waitUntil(
-    caches.open('v3').then(function(cache) {
+    caches.open('v4').then(function(cache) {
       return cache.addAll([
-          'index.html',
+          offlineUrl
+          
       ]);
     })
   );
 });
 
-/*
+
 this.addEventListener('fetch', event => {
   // request.mode = navigate isn't supported in all browsers
   // so include a check for Accept: text/html header.
@@ -36,10 +37,10 @@ this.addEventListener('fetch', event => {
                     })
             );
       }
-}); */
+}); 
 
 this.addEventListener('activate', function(event) {
-  var cacheWhitelist = ['v3'];
+  var cacheWhitelist = ['v4'];
 
   event.waitUntil(
     caches.keys().then(function(keyList) {
