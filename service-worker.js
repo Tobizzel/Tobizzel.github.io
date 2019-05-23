@@ -8,9 +8,9 @@ const offlineUrl = 'offline.html';
 
 this.addEventListener('install', event => {
   event.waitUntil(
-    caches.open('v5').then(function(cache) {
+    caches.open('v6').then(function(cache) {
       return cache.addAll([
-          '/offline.html'
+          'offline.html'
           
       ]);
     })
@@ -19,7 +19,7 @@ this.addEventListener('install', event => {
 
 
 this.addEventListener('activate', function(event) {
-  var cacheWhitelist = ['v5'];
+  var cacheWhitelist = ['v6'];
 
   event.waitUntil(
     caches.keys().then(function(keyList) {
