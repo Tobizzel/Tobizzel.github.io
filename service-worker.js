@@ -10,7 +10,7 @@ this.addEventListener('install', event => {
   event.waitUntil(
     caches.open('v5').then(function(cache) {
       return cache.addAll([
-          'offline.html'
+          '/offline.html'
           
       ]);
     })
