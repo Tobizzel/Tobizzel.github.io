@@ -1,16 +1,10 @@
 'use strict';
 
-var cacheVersion = 2;
-var currentCache = {
-  offline: 'offline-cache' + cacheVersion
-};
-const offlineUrl = 'offline.html';
-
 this.addEventListener('install', event => {
   event.waitUntil(
-    caches.open('v6').then(function(cache) {
+    caches.open('v7').then(function(cache) {
       return cache.addAll([
-          'offline.html'
+          './offline.html'
           
       ]);
     })
@@ -19,7 +13,7 @@ this.addEventListener('install', event => {
 
 
 this.addEventListener('activate', function(event) {
-  var cacheWhitelist = ['v6'];
+  var cacheWhitelist = ['v7'];
 
   event.waitUntil(
     caches.keys().then(function(keyList) {
