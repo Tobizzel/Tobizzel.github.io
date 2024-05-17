@@ -2,77 +2,67 @@
 
 <html lang="de">
 	<head>
-		<title> Karteikarten </title>
+		<title> Blome Medien Produktion </title>
 		<link rel="stylesheet" href="style.css">
 	</head>
 
 	<body>
+		
+		<div id="player"></div>
+		<script async src="https://www.youtube.com/ifram_api"></script>
+		<!-- <script src="js.js"></script> -->
+		<script>
+			var player;
+			function onYoutubeIframeAPIReady(){
+				player = new YT.Player('player', {
+					height: 360,
+					width: 640,
+					videoId: 'dQw4w9WgXcQ',
+					/* playerVars: {
+						autoplay: 1,
+						controls: 0,
+						showinfo: 0,
+						modestbranding: 0,
+						loop: 1,
+						fs: 0,
+						autohide: 0
+					}, */
+					events: {
+						'onReady': onPlayerReady,
+						'onStateChange': onPlayerStateChange
+					}
+				});
+			}
 
-		<header>
-			<div id="Logo">
-				<svg width="50" viewBox="0 0 91 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M72.1965 37.424C56.0377 39.3822 24.1551 38.0509 11.6451 37.2605C7.82659 37.0193 10.2773 31.0073 14.0984 28.0561C23.0505 21.1422 30.8541 16.7796 46.6071 15.6903C77.8333 13.531 82.2436 21.9996 66.8685 22.5632C25.2108 24.0903 18.6504 11.1724 9.58617 14.1014C-0.452962 17.3455 1.48421 45.6964 7.08907 48.5405C19.7141 54.9469 80.1052 54.5711 85.7965 47.2748C89.7432 42.2151 90.1716 14.5585 82.4741 8.32601C74.062 1.51499 32.4803 2.0718 25.3703 5.32471C4.728 14.7688 23.3092 64.2914 23.3098 87.8098C27.2194 141.597 24.7645 100" stroke="black" stroke-width="4" stroke-linecap="round"/>
-				</svg>
+			function onPlayerReady(event){
+				event.target.playVideo();
+			}
 
-			</div>
+			var done = false;
+			function onPlayerStateChange(event){
+				if (event.data == YT.PlayerState.PLAYING && !done){
+					setTimeout(stopVideo, 6000);
+					done=true;
+				}
+			}
 
-			<div id="Pointer">
-				<p> Karteikarten </p>
-			</div>
+			function stopVideo(){
+				player.stopVideo()
+			}
+		</script>
 
-			<div id ="Navigation">
-			
-			</div>
+
+		<!-- <div id="contentwrapper">
 			<nav>
-					<h1> Platzhalter </h1>
+				<div id="BMP"> BMP </div>
+				<div id="Kontakt"> Kontakt </div>
+				<div id="About us">About us</div>
+				<div id="leistung">Was bieten wir an?</div>
+				<div id="lang">English</div>
+				<div id="Mute"></div>
 			</nav>
-
-		</header>
-
-		<div id="Vorderseite" onclick="test()">
-			<p> Lorem ipsum dolor sit amet, consetetur sadio </p>
-		</div>
-
-		<div id="Rückseite" class="hidden" onclick="test2()">
-			<p> Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. </p>
-		</div>
-
-		<div id="Falsch">
-			<h1> Nicht gewusst </h1>
-		</div>
-
-		<div id="Richtig">
-			<h1> Richtig gewusst </h1>
-		</div>
-
+		</div> -->
 
 	</body>
-
-	<script type="text/javascript">
-		function test() {
-			document.getElementById("Vorderseite").classList.add("hidden");
-			document.getElementById("Rückseite").classList.remove("hidden");
-		}
-
-		function test2() {
-			document.getElementById("Rückseite").classList.add("hidden");
-			document.getElementById("Vorderseite").classList.remove("hidden");
-		}
-
-	</script>
-
-	<script>
-		// Register the service worker
-		if ('serviceWorker' in navigator) {
-			navigator.serviceWorker.register('./service-worker.js').then(function(registration) {
-		    // Registration was successful
-		    console.log('ServiceWorker registration successful with scope: ', registration.scope);
-		}).catch(function(err) {
-		    // registration failed :(
-		    	console.log('ServiceWorker registration failed: ', err);
-		    });
-		}
-	</script>
-
 
 </html>
