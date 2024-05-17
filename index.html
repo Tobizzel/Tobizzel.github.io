@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 
-	<body>
+	<body onload="myfunction()">
 		
 		<div id='player'></div>
 		<script async src="https://www.youtube.com/iframe_api"></script>
@@ -26,17 +26,18 @@
 						'loop': 1,
 						'fs': 0,
 						'autohide': 0,
-						'mute': 1,
-					} /*
+						// 'mute': 1,
+					},
 					events: {
 						'onReady': onPlayerReady,
 						'onStateChange': onPlayerStateChange
-					} */
+					}
 				});
 			}
 
 			function onPlayerReady(event){
-				event.target.playVideo();
+				// event.target.playVideo();
+				
 			}
 
 			var done = false;
@@ -53,17 +54,18 @@
 		</script>
 
 
-		<!-- <div id="contentwrapper">
+		<div id="contentwrapper">
 			<nav>
 				<div id="BMP"> BMP </div>
 				<div id="Kontakt"> Kontakt </div>
 				<div id="About us">About us</div>
-				<div id="leistung">Was bieten wir an?</div>
+				<div id="leistung">Leistungen</div>
 				<div id="lang">English</div>
-				<div id="Mute"></div>
 			</nav>
-		</div> -->
+			<div id="Mute"></div>
+		</div>
 
+		<script src="js.js"></script>
 	</body>
 
 </html>
