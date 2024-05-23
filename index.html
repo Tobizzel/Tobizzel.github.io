@@ -6,7 +6,7 @@
 		<link rel="stylesheet" href="style.css">
 	</head>
 
-	<body onload="myfunction()">
+	<body>
 		
 		<div id='player'></div>
 		<script async src="https://www.youtube.com/iframe_api"></script>
@@ -28,15 +28,16 @@
 						'autohide': 0,
 						// 'mute': 1,
 					},
-					/* events: {
+					events: {
 						'onReady': onPlayerReady,
 						//'onStateChange': onPlayerStateChange
-					} */
+					}
 				});
 			}
 
 			function onPlayerReady(event){
-				// event.target.playVideo();
+				myfunction();
+				event.target.playVideo();
 				
 			}
 
@@ -54,7 +55,7 @@
 		</script>
 
 
-		<div id="contentwrapper">
+		<div id="contentwrapper" class="hidden">
 			<nav>
 				<div id="BMP"> BMP </div>
 				<div id="Kontakt"> Kontakt </div>
