@@ -34,17 +34,24 @@ document.addEventListener("DOMContentLoaded", function(){
 }) */
 
 let lastScroll = 0;
+let currentplayer = 0;
+let players = [];
 
 window.addEventListener('scroll', function() {
   // scroll down
   if (lastScroll < window.scrollY) {
+    players[currentplayer].pauseVideo();
     window.scrollBy(0, window.innerHeight);
-    console.log(window.scrollY);
+    currentplayer =+ 1;
+    players[currentplayer].playVideo();
   }
   // scroll up
   else if (lastScroll > window.scrollY) {
+    players[currentplayer].pauseVideo();
     window.scrollBy(0, window.innerHeight * -1);
-    console.log(window.scrollY);
+    currentplayer =- 1;
+    players[currentplayer].playVideo();
+
   }
   lastScroll = window.scrollY;
 });

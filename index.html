@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 <!-- TODO API, dass Luis selbst leicht Videos hinzufügen kann -->
+<!-- TODO Aktuellen Player Funktion einfügen -->
 <!-- TODO Eigene Mute und Entmute Buttons entwerfen -->
 <!-- TODO Code aufräumen, ggf. Funktionen auslagern, Kommentierungen sinnvoll einsetzen -->
 
@@ -37,6 +38,8 @@
 					}
 				});
 
+				players.push(player);
+
 				player2 = new YT.Player('test', {
 					videoId: '-lGFpyuuchg',
 					playerVars: {
@@ -49,6 +52,8 @@
 						'mute': 1,
 					},
 				});
+
+				players.push(player2);
 			}
 
 			function onPlayerReady(event){
@@ -60,7 +65,7 @@
 			function playfuckingvid(mute){
 				console.log(mute);
 				if (mute == 1){
-					player.unMute();
+					players[currentplayer].unMute();
 					document.getElementById("mutelogo").style.transistion = "all 0.1s ease";
 					document.getElementById("mutelogo").style.opacity = 0;
 					document.getElementById("mutelogo").style.zIndex = 1;
@@ -68,7 +73,7 @@
 					document.getElementById("demutelogo").style.opacity = 1;
 					document.getElementById("demutelogo").style.zIndex = 2;
 				} else {
-					player.mute();
+					players[currentplayer].mute();
 					document.getElementById("demutelogo").style.opacity = 0;
 					document.getElementById("mutelogo").style.opacity = 1;
 					document.getElementById("demutelogo").style.zIndex = 1;
