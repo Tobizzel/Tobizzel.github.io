@@ -59,12 +59,10 @@
 			function onPlayerReady(event){
 				myfunction();
 				player.playVideo();
-				console.log(players.length);
 				
 			}
 
 			function playfuckingvid(mute){
-				console.log(mute);
 				if (mute == 1){
 					players[currentplayer].unMute();
 					document.getElementById("mutelogo").style.transistion = "all 0.1s ease";

@@ -49,6 +49,7 @@ window.addEventListener('scroll', function() {
     }
     console.log("current player:" + currentplayer);
     players[currentplayer].playVideo();
+    players[currentplayer].unMute();
   }
   // scroll up
   else if (lastScroll > window.scrollY) {
@@ -60,6 +61,7 @@ window.addEventListener('scroll', function() {
         currentplayer = 0;
     }
     players[currentplayer].playVideo();
+    players[currentplayer].unMute();
 
   }
   lastScroll = window.scrollY;
