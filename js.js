@@ -46,10 +46,12 @@ window.addEventListener('scroll', function() {
     if (currentplayer > players.length - 1){
         currentplayer = players.length - 1;
     }
-    
+
     players[currentplayer].playVideo();
     if (mutestatus == 0){
         players[currentplayer].unMute();
+    }else{
+        players[currentplayer].mute();
     }
   }
   // scroll up
@@ -63,6 +65,8 @@ window.addEventListener('scroll', function() {
     players[currentplayer].playVideo();
     if (mutestatus == 0){
         players[currentplayer].unMute();
+    }else{
+        players[currentplayer].mute();
     }
 
   }
