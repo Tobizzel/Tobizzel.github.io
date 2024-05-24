@@ -62,8 +62,8 @@
 				
 			}
 
-			function playfuckingvid(mute){
-				if (mute == 1){
+			function playfuckingvid(){
+				if (mutestatus == 1){
 					players[currentplayer].unMute();
 					document.getElementById("mutelogo").style.transistion = "all 0.1s ease";
 					document.getElementById("mutelogo").style.opacity = 0;
@@ -71,12 +71,14 @@
 					document.getElementById("demutelogo").style.transistion = "all 0.1s ease";
 					document.getElementById("demutelogo").style.opacity = 1;
 					document.getElementById("demutelogo").style.zIndex = 2;
+					mutestatus = 0;
 				} else {
 					players[currentplayer].mute();
 					document.getElementById("demutelogo").style.opacity = 0;
 					document.getElementById("mutelogo").style.opacity = 1;
 					document.getElementById("demutelogo").style.zIndex = 1;
 					document.getElementById("mutelogo").style.zIndex = 2;
+					mutestatus = 1;
 				};
 			}
 			/* var done = false;
@@ -102,8 +104,8 @@
 				<div id="lang">English</div>
 			</nav>
 			<div id="Mute">
-				<img src="pictures/001-mute.png" id="mutelogo" onclick="playfuckingvid(1)">
-				<img src="pictures/002-volume.png" id="demutelogo" onclick="playfuckingvid(0)">
+				<img src="pictures/001-mute.png" id="mutelogo" onclick="playfuckingvid()">
+				<img src="pictures/002-volume.png" id="demutelogo" onclick="playfuckingvid()">
 			</div>
 		</div>
 

@@ -36,6 +36,7 @@ document.addEventListener("DOMContentLoaded", function(){
 let lastScroll = 0;
 let currentplayer = 0;
 let players = [];
+let mutestatus = 1;
 console.log(length.players);
 
 window.addEventListener('scroll', function() {
@@ -49,7 +50,9 @@ window.addEventListener('scroll', function() {
     }
     console.log("current player:" + currentplayer);
     players[currentplayer].playVideo();
-    players[currentplayer].unMute();
+    if (mutestatus == 0){
+        players[currentplayer].unMute();
+    }
   }
   // scroll up
   else if (lastScroll > window.scrollY) {
@@ -61,7 +64,9 @@ window.addEventListener('scroll', function() {
         currentplayer = 0;
     }
     players[currentplayer].playVideo();
-    players[currentplayer].unMute();
+    if (mutestatus == 0){
+        players[currentplayer].unMute();
+    }
 
   }
   lastScroll = window.scrollY;
