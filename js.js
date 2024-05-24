@@ -32,3 +32,19 @@ document.addEventListener("DOMContentLoaded", function(){
     var div = document.getElementById('contentwrapper');
     div.style.display="block";
 }) */
+
+let lastScroll = 0;
+
+window.addEventListener('scroll', function() {
+  // scroll down
+  if (lastScroll < window.scrollY) {
+    window.scrollBy(0, window.innerHeight);
+    console.log(window.scrollY);
+  }
+  // scroll up
+  else if (lastScroll > window.scrollY) {
+    window.scrollBy(0, window.innerHeight * -1);
+    console.log(window.scrollY);
+  }
+  lastScroll = window.scrollY;
+});

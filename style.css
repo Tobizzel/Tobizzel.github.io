@@ -6,6 +6,10 @@
 	color: white;
 }
 
+::-webkit-scrollbar{
+	display: none;
+}
+
 #player{
 	height: 100vh;
 	width: 100vw;
@@ -13,7 +17,7 @@
 }
 
 #contentwrapper{
-	position: absolute;
+	position: fixed;
 	top:0;
 	background: rgba(255,255,255,0.21);
 	backdrop-filter: blur(4.5px);
@@ -81,4 +85,12 @@
 	width: 5vw;
 	opacity: 0;
 	z-index: 1;
+}
+
+#test{
+	height:100vh;
+	width: 100vw;
+
+	position:absolute;
+	top: 100vh;
 }
