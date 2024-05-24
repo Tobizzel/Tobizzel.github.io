@@ -36,20 +36,29 @@ document.addEventListener("DOMContentLoaded", function(){
 let lastScroll = 0;
 let currentplayer = 0;
 let players = [];
+console.log(length.players);
 
 window.addEventListener('scroll', function() {
   // scroll down
   if (lastScroll < window.scrollY) {
     players[currentplayer].pauseVideo();
     window.scrollBy(0, window.innerHeight);
-    currentplayer =+ 1;
+    currentplayer = currentplayer + 1;
+    if (currentplayer > players.length - 1){
+        currentplayer = players.length - 1;
+    }
+    console.log("current player:" + currentplayer);
     players[currentplayer].playVideo();
   }
   // scroll up
   else if (lastScroll > window.scrollY) {
+    console.log("current player:" + currentplayer);
     players[currentplayer].pauseVideo();
     window.scrollBy(0, window.innerHeight * -1);
-    currentplayer =- 1;
+    currentplayer = currentplayer - 1;
+    if (currentplayer < 0){
+        currentplayer = 0;
+    }
     players[currentplayer].playVideo();
 
   }
