@@ -2,10 +2,9 @@
 	margin: 0;
 	padding: 0;	
 	font-size: large;
+	font-family: "Lato", sans-serif;
+	color: white;
 }
-/* body{
-	background-color: blue;
-} */
 
 #player{
 	height: 100vh;
@@ -34,18 +33,24 @@
 	margin-top: 2vh;
 }
 #contentwrapper nav div{
-	/* border: solid 1px black; */
-	box-shadow: inset 0px 0px 0px 1px black;
+	box-shadow: inset 0px 0px 0px 1px white;
 	height: 10vh;
 	line-height: 10vh;
 	width: 10vw;
 	text-align: center;
 	vertical-align: middle;
 	margin-left: 7.5vw;
-	/* margin-top: 2vh; */
 	float: left;
 }
 
+#contentwrapper nav div:hover{
+	opacity: 1;
+	transition: opacity 0.5s ease;
+	background-color: white;
+	color: black;
+}
+
+/*
 #Mute {
 	position: absolute;
 	top: 20vh;
@@ -54,4 +59,26 @@
 	height: 5vw;
 	width: 5vw;
 	background-color: black;
+}*/
+
+#mutelogo{
+	position: absolute;
+	top: 20vh;
+	left: 0vw;
+	display: block;
+	height: 5vw;
+	width: 5vw;
+	opacity: 0;
+	z-index: 2;
+}
+
+#demutelogo{
+	position: absolute;
+	top: 20vh;
+	left: 0vw;
+	display: block;
+	height: 5vw;
+	width: 5vw;
+	opacity: 0;
+	z-index: 1;
 }

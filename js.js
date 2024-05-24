@@ -1,7 +1,11 @@
 function myfunction(){
-    var element = document.getElementById('Mute');
+    var element = document.getElementById('mutelogo');
+    var element2 = document.getElementById('demutelogo');
+    element.style.opacity="1";
     element.style.transition='all 2s ease';
     element.style.left = '85vw';
+    element2.style.transition='all 2s ease';
+    element2.style.left = '85vw';
 }
 
 document.addEventListener("DOMContentLoaded", function(){
