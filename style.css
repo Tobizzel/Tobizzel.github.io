@@ -1,7 +1,7 @@
 *{
 	margin: 0;
 	padding: 0;	
-	font-size: large;
+	font-size: 2vh;
 	font-family: "Lato", sans-serif;
 	color: white;
 }
@@ -14,12 +14,6 @@
 	height:100%;
 }
 
-#player{
-	height: 100vh;
-	width: 100vw;
-	z-index: 0;
-}
-
 #contentwrapper{
 	position: fixed;
 	top:0;
@@ -28,7 +22,7 @@
 	width: 100vw;
 	height: 100vh;
 
-	transition: opacity 1s ease;
+	transition: all 1s ease;
 	opacity: 1;
 }
 
@@ -37,9 +31,13 @@
 }
 
 #contentwrapper nav{
-	margin-left: 2.5vw;
+	width: 80.01vw;
+	margin-left: 10vw;
 	margin-top: 2vh;
+	height: 10vh;
+	transition: all 1s ease;
 }
+
 #contentwrapper nav div{
 	box-shadow: inset 0px 0px 0px 1px white;
 	height: 10vh;
@@ -47,8 +45,12 @@
 	width: 10vw;
 	text-align: center;
 	vertical-align: middle;
-	margin-left: 7.5vw;
+	margin-right: 7.5vw;
 	float: left;
+}
+
+#contentwrapper nav div:last-child{
+	margin-right: 0;
 }
 
 #contentwrapper nav div:hover{
@@ -58,16 +60,9 @@
 	color: black;
 }
 
-/*
-#Mute {
-	position: absolute;
-	top: 20vh;
-	left: 0vw;
-	display: block;
-	height: 5vw;
-	width: 5vw;
-	background-color: black;
-}*/
+.navigation{
+	transition: all 1s ease;
+}
 
 #mutelogo{
 	position: absolute;
@@ -91,12 +86,12 @@
 	z-index: 1;
 }
 
-#test{
-	height:100vh;
-	width: 100vw;
+#Impressum{
+	background-color: dimgrey;
+	height: 50vh;
 
-	/*
-	position:absolute;
-	top: 100vh;
-	z-index: 0; */
+}
+
+#Impressum a {
+	color: white;
 }

@@ -1,8 +1,17 @@
 <!DOCTYPE html>
 
-<!-- TODO API, dass Luis selbst leicht Videos hinzufügen kann -->
 <!-- TODO Eigene Mute und Entmute Buttons entwerfen -->
-<!-- TODO Code aufräumen, ggf. Funktionen auslagern, Kommentierungen sinnvoll einsetzen -->
+<!-- TODO YouTube Branding einfügen -->
+<!-- TODO Video Link platzieren -->
+<!-- TODO Ton fürs Mute Symbol -->
+<!-- TODO Impressum einfügen -->
+<!-- TODO Erinnerung Entmute Funktion -->
+<!-- TODO Get Your Content Dubbed -->
+<!-- TODO ERklärung der Mute Taste -->
+<!-- TODO Youtube Video mit englischen Untertiteln-->
+<!-- TODO Einbinden der richtigen Videos -->
+<!-- TODO Cookie Banner-->
+
 
 <html lang="de">
 	<head>
@@ -14,105 +23,37 @@
 	</head>
 
 	<body>
+		<script src="scripts/global_variables.js"></script>
 		
-		<div id='player'></div>
 		<script async src="https://www.youtube.com/iframe_api"></script>
-		<script>
-			let mutestatus = 1;
-			var player;
-			function onYouTubeIframeAPIReady(){
-				player = new YT.Player('player', {
-					videoId: 'dQw4w9WgXcQ',
-					playerVars: {
-						'controls': 0,
-						'showinfo': 0,
-						'modestbranding': 1,
-						'loop': 1,
-						'fs': 0,
-						'autohide': 0,
-						'mute': 1,
-					},
-					events: {
-						'onReady': onPlayerReady,
-						//'onStateChange': onPlayerStateChange
-					}
-				});
-
-				players.push(player);
-
-				player2 = new YT.Player('test', {
-					videoId: '-lGFpyuuchg',
-					playerVars: {
-						'controls': 0,
-						'showinfo': 0,
-						'modestbranding': 1,
-						'loop': 1,
-						'fs': 0,
-						'autohide': 0,
-						'mute': 1,
-					},
-				});
-
-				players.push(player2);
-			}
-
-			function onPlayerReady(event){
-				myfunction();
-				player.playVideo();
-				
-			}
-
-			function playfuckingvid(){
-				if (mutestatus == 1){
-					players[currentplayer].unMute();
-					document.getElementById("mutelogo").style.transistion = "all 0.1s ease";
-					document.getElementById("mutelogo").style.opacity = 0;
-					document.getElementById("mutelogo").style.zIndex = 1;
-					document.getElementById("demutelogo").style.transistion = "all 0.1s ease";
-					document.getElementById("demutelogo").style.opacity = 1;
-					document.getElementById("demutelogo").style.zIndex = 2;
-					mutestatus = 0;
-				} else {
-					players[currentplayer].mute();
-					document.getElementById("demutelogo").style.opacity = 0;
-					document.getElementById("mutelogo").style.opacity = 1;
-					document.getElementById("demutelogo").style.zIndex = 1;
-					document.getElementById("mutelogo").style.zIndex = 2;
-					mutestatus = 1;
-				};
-			}
-			/* var done = false;
-			function onPlayerStateChange(event){
-				if (event.data == YT.PlayerState.PLAYING && !done){
-					setTimeout(stopVideo, 6000);
-					done=true;
-				}
-			} */
-
-			function stopVideo(){
-				player.stopVideo()
-			}
-		</script>
-
-
-		<div id="contentwrapper" class="hidden">
+		<script src="scripts/ytvideolist.js"></script>
+		<script src="scripts/video_functions.js"></script>
+		<script src="scripts/js.js"></script>
+		<!-- <script src="test.js"></script> -->
+		
+		<div id="contentwrapper"> <!-- class="hidden"-->
 			<nav>
-				<div id="BMP"> BMP </div>
-				<div id="Kontakt"> Kontakt </div>
-				<div id="About us">About us</div>
-				<div id="leistung">Leistungen</div>
-				<div id="lang">English</div>
+				<div id="BMP" class="navigation"> BMP </div>
+				<div id="Kontakt" class="navigation"> Kontakt </div>
+				<div id="About us" class="navigation">About us</div>
+				<div id="leistung" class="navigation">Leistungen</div>
+				<div id="lang" class="navigation">English</div>
 			</nav>
-			<div id="Mute">
-				<img src="pictures/001-mute.png" id="mutelogo" onclick="playfuckingvid()">
-				<img src="pictures/002-volume.png" id="demutelogo" onclick="playfuckingvid()">
-			</div>
+
+			<a id="ytlink">Zum Video</div>
 		</div>
 
-		<div id="test">
+		<div id="Mute">
+			<img src="pictures/001-mute.png" id="mutelogo" onclick="mutebutton()">
+			<img src="pictures/002-volume.png" id="demutelogo" onclick="mutebutton()">
 		</div>
+		
 
-		<script src="js.js"></script>
+		<!--
+		<div id="Impressum">
+			<a> Impressum </a>
+			<a> Datenschutz </a>
+		</div> -->
 	</body>
 
 </html>
