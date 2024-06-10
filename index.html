@@ -5,15 +5,16 @@
 	<!-- TODO Rücksprache über aktuellen FullpageScroll -->
 	<!-- TODO Youtube Video mit englischen Untertiteln -->
 	<!-- TODO Get Your Content Dubbed -->
+	<!-- TODO Video Link platzieren -->
+	<!-- TODO Erinnerung Entmute Funktion -->
+	<!-- TODO Ton fürs Mute Symbol -->
+	<!-- TODO Eigene Mute und Entmute Buttons entwerfen -->
 
 
-<!-- TODO Video Link platzieren -->
-<!-- TODO Eigene Mute und Entmute Buttons entwerfen -->
-<!-- TODO Ton fürs Mute Symbol -->
 <!-- TODO Impressum einfügen -->
-<!-- TODO Erinnerung Entmute Funktion -->
 
-<!-- TODO ERklärung der Mute Taste -->
+
+<!-- TODO Erklärung der Mute Taste -->
 <!-- TODO Cookie Banner -->
 
 <!-- Aufgaben bei Deployment -->
@@ -49,21 +50,19 @@
 				<div id="leistung" class="navigation">Leistungen</div>
 				<div id="lang" class="navigation">English</div>
 			</nav>
-
-			<a id="ytlink">Zum Video</div>
+			
+			<a id="ytlink">Zum Video</a>
 		</div>
 
 		<div id="Mute">
-			<img src="pictures/001-mute.png" id="mutelogo" onclick="mutebutton()">
-			<img src="pictures/002-volume.png" id="demutelogo" onclick="mutebutton()">
+			<img src="pictures/Mute.svg" id="mutelogo" onclick="mutebutton()">
+			<img src="pictures/entmute.svg" id="demutelogo" onclick="mutebutton()">
 			<div id="dubbed"> Get your content dubbed! </div>
+			<audio id="audiofile">
+				<source src="sounds/Bling.wav" type="audio/wav">
+			</audio>
 		</div>
 		
-
-		<!-- <div id="Impressum">
-			<a> Impressum </a>
-			<a> Datenschutz </a>
-		</div> -->
 	</body>
 
 </html>

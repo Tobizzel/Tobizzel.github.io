@@ -21,3 +21,5 @@ var ytsettings = {
 var ytheight = window.innerHeight;
 var ytwidth = window.innerWidth;
 var scrollTimeout = false;
+
+//var muteRememberTimeout = setTimeout(checkmute, 5000);

@@ -106,3 +106,56 @@ function myScroll(event) {
 };
 
 document.addEventListener("scroll", myScroll);
+
+function scrolldown(){
+    players[currentplayer].pauseVideo();
+    //target = window.scrollY + window.innerHeight;
+    //console.log("Scroll Position: " + this.window.scrollY);
+    //console.log("Scrollweite: " + window.innerHeight);
+    //console.log("Target: " + target);
+    window.scrollTo({top: target, behavior: 'smooth'});
+    currentplayer = currentplayer + 1;
+
+    if (currentplayer > players.length - 1){
+        currentplayer = players.length - 1;
+    }
+
+    players[currentplayer].playVideo();
+
+    currentytlink = "https://www.youtube.com/watch?v=" + ytvideolist[currentplayer];
+    document.getElementById("ytlink").href = currentytlink;
+
+    if (mutestatus == 0){
+        players[currentplayer].unMute();
+    }else{
+        players[currentplayer].mute();
+    }
+
+    //lastScroll = target;
+}
+
+function scrollup() {
+    players[currentplayer].pauseVideo();
+    //target = window.scrollY - window.innerHeight;
+    //console.log("Scroll Position: " + window.scrollY);
+    //console.log("Scrollweite: " + window.innerHeight);
+    //console.log("Target: " + target);
+    window.scrollTo({top: target, behavior: 'smooth'});
+    currentplayer = currentplayer - 1;
+    if (currentplayer < 0){
+        currentplayer = 0;
+    }
+    players[currentplayer].playVideo();
+
+    currentytlink = "https://www.youtube.com/watch?v=" + ytvideolist[currentplayer];
+    document.getElementById("ytlink").href = currentytlink;
+
+
+    if (mutestatus == 0){
+        players[currentplayer].unMute();
+    }else{
+        players[currentplayer].mute();
+    }
+
+    //lastScroll = target;
+}

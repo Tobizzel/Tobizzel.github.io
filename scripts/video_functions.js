@@ -1,3 +1,5 @@
+var muteRememberTimeout = setTimeout(checkmute, 15000); //check every 15 seconds
+
 function onYouTubeIframeAPIReady(){
     for (let i = 0; i < ytvideolist.length; i++) {
 
@@ -49,5 +51,29 @@ function mutebutton(){
         document.getElementById("demutelogo").style.zIndex = 1;
         document.getElementById("mutelogo").style.zIndex = 2;
         mutestatus = 1;
+        clearTimeout(muteRememberTimeout)
+        muteRememberTimeout = setTimeout(checkmute, 15000); //check every 15 seconds
     };
+}
+
+function checkmute(){
+    if (mutestatus == 1){
+        console.log("REMEMBER TO UNMUTE");
+        var element = document.getElementById('mutelogo');
+        var element2 = document.getElementById('demutelogo');
+        element.style.transition='all 2s ease';
+        element2.style.transition='all 2s ease';
+
+        element2.style.left = '50vw';
+        element.style.left = '50vw';
+        element.style.fill = "red";
+        element2.style.fill = "red";
+    
+
+        document.getElementById('audiofile').play();
+
+        setTimeout(myfunction,2000);
+    }
+
+    muteRememberTimeout = setTimeout(checkmute, 15000);//check every 15 seconds
 }
