@@ -65,7 +65,7 @@
 }
 
 #mutelogo{
-	position: absolute;
+	position: fixed;
 	top: 20vh;
 	left: 0vw;
 	display: block;
@@ -76,7 +76,7 @@
 }
 
 #demutelogo{
-	position: absolute;
+	position: fixed;
 	top: 20vh;
 	left: 0vw;
 	display: block;
@@ -84,6 +84,15 @@
 	width: 5vw;
 	opacity: 0;
 	z-index: 1;
+}
+
+#dubbed{
+	z-index: 1;
+	font-size: 5vw;
+	position: fixed;
+	top: 20vh;
+	left: 10vw;
+	opacity: 1;
 }
 
 #Impressum{
@@ -94,4 +103,17 @@
 
 #Impressum a {
 	color: white;
+}
+
+#ytlink{
+	position: fixed;
+	left: 10vw;
+	top: 80vh;
+	height: 10vh;
+	width: 10vw;
+	line-height: 10vh;
+	justify-content: center;
+	z-index: 2;
+	box-shadow: inset 0px 0px 0px 1px white;
+	text-align: center;
 }

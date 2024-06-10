@@ -19,6 +19,8 @@ function onYouTubeIframeAPIReady(){
 
         players.push(player);
 
+        maxScroll = maxScroll + window.innerHeight;
+
     }
 }
 
