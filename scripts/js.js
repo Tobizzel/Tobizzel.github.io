@@ -2,14 +2,18 @@ function myfunction(){
     var element = document.getElementById('mutelogo');
     var element2 = document.getElementById('demutelogo');
     var element3 = document.getElementById('dubbed');
+    var element4 = document.getElementById('entmutetext');
     element.style.opacity="1";
     element.style.transition='all 2s ease';
     element.style.left = '85vw';
     element2.style.transition='all 2s ease';
     element2.style.left = '85vw';
-    element3.style.transition='all 2s ease';
-    element3.style.left = '90vw';
+    element3.style.transition='opacity 6s ease, left 2s ease';
+    element3.style.left = '20vw';
     element3.style.opacity = "0";
+    element4.style.transition='all 2s ease';
+    element4.style.left = '95vw';
+    element4.style.opacity = "0";
 }
 
 document.addEventListener("DOMContentLoaded", function(){
@@ -36,9 +40,9 @@ document.addEventListener("DOMContentLoaded", function(){
     function changeclasses(mult, navmult) {
         for (i=classelements.length -1 , x=-1; i > x; i--){
             navlist[0].style.marginLeft = (10 * navmult) +"vw";
-            classelements[i].style.height = (10 * mult) + "vh";
+            classelements[i].style.height = (5 * mult) + "vh";
             classelements[i].style.width = (10 * mult) + "vw";
-            classelements[i].style.lineHeight = (10 * mult) + "vh";
+            classelements[i].style.lineHeight = (5 * mult) + "vh";
             classelements[i].style.fontSize = (2 * mult) + "vh";
             if (i == classelements.length - 1){
                 classelements[i].style.marginRight = "0";
@@ -84,7 +88,7 @@ function myScroll(event) {
                     target = lastScroll - window.innerHeight;
                     scrollup();
                     if (target < 0) {
-                        console.log("Whoa that escaleted quickly"); 
+                        //console.log("Whoa that escaleted quickly"); 
                         target = 0;
                     }
                     //setTimeout(function(){ticking = false}, 4000);

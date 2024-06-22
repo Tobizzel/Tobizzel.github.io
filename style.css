@@ -34,19 +34,20 @@
 	width: 80.01vw;
 	margin-left: 10vw;
 	margin-top: 2vh;
-	height: 10vh;
+	height: 5vh;
 	transition: all 1s ease;
 }
 
 #contentwrapper nav div{
 	box-shadow: inset 0px 0px 0px 1px white;
-	height: 10vh;
-	line-height: 10vh;
+	height: 5vh;
+	line-height: 5vh;
 	width: 10vw;
 	text-align: center;
 	vertical-align: middle;
 	margin-right: 7.5vw;
 	float: left;
+	border-radius: 5%;
 }
 
 #contentwrapper nav div:last-child{
@@ -55,7 +56,7 @@
 
 #contentwrapper nav div:hover{
 	opacity: 1;
-	transition: opacity 0.5s ease;
+	transition: background-color 1s ease-out;
 	background-color: white;
 	color: black;
 }
@@ -94,8 +95,19 @@
 	font-size: 5vw;
 	position: fixed;
 	top: 20vh;
-	left: 10vw;
+	left: -50vw;
 	opacity: 1;
+}
+
+#entmutetext{
+	z-index: 1;
+	font-size: 5vh;
+	position: fixed;
+	top: 21vh;
+	left: 5vw;
+	opacity: 1;
+	font-style: italic;
+	width: 20vW;
 }
 
 #Impressum{
@@ -111,15 +123,16 @@
 #ytlink{
 	position: fixed;
 	left: 10vw;
-	top: 80vh;
-	height: 10vh;
+	top: 85vh;
+	height: 5vh;
 	width: 10vw;
-	line-height: 10vh;
+	line-height: 5vh;
 	justify-content: center;
 	z-index: 2;
 	box-shadow: inset 0px 0px 0px 1px white;
 	text-align: center;
 	text-decoration: none;
+	border-radius: 5%;
 }
 
 #ytlink:hover{

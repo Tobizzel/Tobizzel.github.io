@@ -1,4 +1,4 @@
-var muteRememberTimeout = setTimeout(checkmute, 15000); //check every 15 seconds
+var muteRememberTimeout;
 
 function onYouTubeIframeAPIReady(){
     for (let i = 0; i < ytvideolist.length; i++) {
@@ -31,6 +31,7 @@ function onPlayerReady(event){
     players[0].playVideo();
     currentytlink = "https://www.youtube.com/watch?v=" + ytvideolist[0];
     document.getElementById("ytlink").href = currentytlink;
+    muteRememberTimeout = setTimeout(checkmute, 15000); //check every 15 seconds
     
 }
 
@@ -41,7 +42,7 @@ function mutebutton(){
         document.getElementById("mutelogo").style.opacity = 0;
         document.getElementById("mutelogo").style.zIndex = 1;
         document.getElementById("demutelogo").style.transistion = "all 0.1s ease";
-        document.getElementById("demutelogo").style.opacity = 1;
+        document.getElementById("demutelogo").style.opacity = 0.3;
         document.getElementById("demutelogo").style.zIndex = 2;
         mutestatus = 0;
     } else {
@@ -58,16 +59,21 @@ function mutebutton(){
 
 function checkmute(){
     if (mutestatus == 1){
-        console.log("REMEMBER TO UNMUTE");
+        //console.log("REMEMBER TO UNMUTE");
         var element = document.getElementById('mutelogo');
         var element2 = document.getElementById('demutelogo');
+        var element3 = document.getElementById('entmutetext');
+        element3.style.opacity='1';
         element.style.transition='all 2s ease';
         element2.style.transition='all 2s ease';
+        element3.style.transition='all 2s ease';
 
         element2.style.left = '50vw';
         element.style.left = '50vw';
-        element.style.fill = "red";
-        element2.style.fill = "red";
+        element3.style.left = '60vw';
+        
+        //element.style.fill = "red";
+        //element2.style.fill = "red";
     
 
         document.getElementById('audiofile').play();
