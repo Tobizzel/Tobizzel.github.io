@@ -4,6 +4,7 @@
 	font-size: 2vh;
 	font-family: "Lato", sans-serif;
 	color: white;
+	overflow: hidden;
 }
 
 ::-webkit-scrollbar{
@@ -104,10 +105,11 @@
 	font-size: 5vh;
 	position: fixed;
 	top: 21vh;
-	left: 5vw;
+	left: 95vw;
 	opacity: 1;
 	font-style: italic;
 	width: 20vW;
+	opacity: 0;
 }
 
 #Impressum{
@@ -141,3 +143,33 @@
 	background-color: white;
 	color: black;
 }
+
+
+#NicesVideoDiv{
+	display: flex;
+	height:100vh;
+	color:black;
+	z-index: 0;
+}
+
+#KontaktDiv{
+	display: flex;
+	height:100vh;
+	color:black;
+	z-index: 0;
+}
+
+#AboutDiv{
+	display: flex;
+	height:100vh;
+	color:black;
+	z-index: 0;
+}
+
+#LeistungenDiv{
+	display: flex;
+	height:100vh;
+	color:black;
+	z-index: 0;
+}
+

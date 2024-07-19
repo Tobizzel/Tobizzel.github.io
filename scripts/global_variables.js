@@ -1,10 +1,10 @@
-var lastScroll = 0;
-var currentplayer = 0;
+//var lastScroll = 0;
+//var currentplayer = 0;
 var players = [];
 var mutestatus = 1;
-var ticking = false;
-var target = 0;
-var maxScroll = 0 - window.innerHeight; //= 0.5 * window.innerHeight;
+//var ticking = false;
+//var target = 0;
+//var maxScroll = 0 - window.innerHeight; //= 0.5 * window.innerHeight;
 
 var ytsettings = {
         'disablekb': 1,

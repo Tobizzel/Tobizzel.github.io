@@ -17,6 +17,7 @@
 <html lang="de">
 	<head>
 		<title> Blome Medien Produktion </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<link rel="stylesheet" href="style.css">
 		<link rel="preconnect" href="https://fonts.googleapis.com">
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -26,17 +27,29 @@
 	<body>
 		<script src="scripts/global_variables.js"></script>
 		
-		<script async src="https://www.youtube.com/iframe_api"></script>
+		<!-- <script async src="https://www.youtube.com/iframe_api"></script> -->
+		<!-- TODO Script zum einfügen der Videos --> 
+
 		<script src="scripts/ytvideolist.js"></script>
-		<script src="scripts/video_functions.js"></script>
+		<!-- <script async src="scripts/videostart.js"></script> -->
+		<!-- <script src="scripts/video_functions.js"></script> -->
+		<div class="section" id="NicesVideoDiv" style="background-color: #3498db;"> Woahh, nices Video</div>
+		<div class="section" id="KontaktDiv" style="background-color: #2ecc71;"> Richtig cooles Kontaktformular </div>
+		<div class="section" id="AboutDiv" style="background-color: #e74c3c;"> Ich bin der Luis und ich bin auch dabei </div>
+		<div class="section" id="LeistungenDiv" style="background-color: #9b59b6;"> Wir können viel. Wirklich!</div>
+
 		<script src="scripts/js.js"></script>
+
+		
+		
+
 		
 		<div id="contentwrapper"> <!-- class="hidden"-->
 			<nav>
-				<div id="BMP" class="navigation"> <a href="index.html"> BMP </a>  </div> 
-				<div id="Kontakt" class="navigation"> <a href="kontakt.html"> Kontakt </a> </div>
-				<div id="About us" class="navigation">About us</div>
-				<div id="leistung" class="navigation">Leistungen</div>
+				<div id="BMP" class="navigation" onclick="navScroll(document.getElementById('div0'))">  BMP </div> 
+				<div id="Kontakt" class="navigation" onclick="navScroll(document.getElementById('KontaktDiv'))"> <!-- <a href="kontakt.html"> --> Kontakt </a> </div>
+				<div id="About us" class="navigation" onclick="navScroll(document.getElementById('AboutDiv'))">About us</div>
+				<div id="leistung" class="navigation" onclick="navScroll(document.getElementById('LeistungenDiv'))">Leistungen</div>
 				<div id="lang" class="navigation">English</div>
 			</nav>
 			
