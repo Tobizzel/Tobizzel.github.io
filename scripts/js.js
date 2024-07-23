@@ -25,6 +25,7 @@ async function loadYoutubeAPI(){
 async function loadYoutubePlayers() {
     return new Promise(function(resolve) {
         let x = 0;
+        window.players= [];
         for (let i = 0; i < ytvideolist.length; i++) {
             divname = "div"+ i;
             newDiv = document.createElement("video");
@@ -34,10 +35,25 @@ async function loadYoutubePlayers() {
             document.body.insertBefore(newDiv, beforeDiv)
 
             player = new YT.Player (divname, {
-                videoId: ytvideolist[i],
-                height: ytheight,
-                width: ytwidth,
-                playerVars: ytsettings,
+                videoId: ytvideolist[i].videourl,
+                height: window.innerHeight,
+                width: window.innerWidth,
+                playerVars: {
+                    'disablekb': 1,
+                    'controls': 0,
+                    'showinfo': 0,
+                    'loop': 1,
+                    'fs': 0,
+                    'mute': 1,
+                    'cc_load_policy': 1,
+                    //'cc_lang_pref': 'en',
+                    'hl': 'de',
+                    'start': ytvideolist[i].startsek,
+                    'end': ytvideolist[i].startsek + 30,
+                },
+                events: {
+                    'onStateChange': onPlayerStateChange,
+                }
             });
         
             players.push(player);
@@ -55,7 +71,6 @@ async function loadYoutubePlayers() {
     });
 }
 
-
 async function initVariables(){
 
     return new Promise(function(resolve) {
@@ -69,40 +84,63 @@ async function initVariables(){
             window.ytLinkElement = document.getElementById('ytlink');
             window.navigationClassElement = document.getElementsByClassName("navigation");
             window.navigationTagElement = document.getElementsByTagName("nav");
+            window.muteStatus = true;
+            window.muteLogo = document.getElementById('mutelogo');
+            window.unMuteLogo = document.getElementById('demutelogo');
+            window.unMuteText = document.getElementById('entmutetext');
+            window.muteInterval = 0;
 
     
         resolve("Variables declared!");
     });
-    
-
 }
 
 async function startWebsite(){
     return new Promise(function(resolve) {
-        //Always Scroll to Top on Reaload
+        // Always Scroll to Top on Reaload
             document.querySelectorAll("iframe")[0].scrollIntoView();
 
         // Positionierung der UI Elemente
-            var element = document.getElementById('mutelogo');
-            var element2 = document.getElementById('demutelogo');
             var element3 = document.getElementById('dubbed');
-            element.style.opacity="1";
-            element.style.transition='all 2s ease';
-            element.style.left = '85vw';
-            element2.style.transition='all 2s ease';
-            element2.style.left = '85vw';
-            element3.style.transition='opacity 6s ease, left 2s ease';
-            element3.style.left = '20vw';
+            muteLogo.style.opacity="1";
+            muteLogo.style.transition='all 2s ease';
+            muteLogo.style.left = '85vw';
+            unMuteLogo.style.transition='all 2s ease';
+            unMuteLogo.style.left = '85vw';
+            element3.style.transition='opacity 6s ease';
             element3.style.opacity = "0";
+            
+        // Ersten Link setzen    
+            currentytlink = "https://www.youtube.com/watch?v=" + ytvideolist[0].videourl;
+            ytLinkElement.href = currentytlink;
         
-        //EventListner initalisieren
+        // EventListner initalisieren
             document.addEventListener('wheel', handleScroll);
             document.addEventListener('mousemove', resetHideTimer)
             resetHideTimer();
 
+            muteInterval = setInterval(checkmute, 15000);
+
+            const checkPlayerReady = setInterval(function(){if (players[0] && typeof players[0].playVideo === 'function'){
+                players[0].playVideo();
+                clearInterval(checkPlayerReady);
+            }}, 100);
+
         resolve("Website ist komplett startklar!");
 
     });
+}
+
+async function onPlayerStateChange(event) {
+    if (event.data == 0){
+        previousSection = currentSection;
+        players[currentSection].seekTo(ytvideolist[currentSection].startsek);
+        currentSection = currentSection + 1;
+
+        isScrolling = true;
+        await scrollToSection(sections[currentSection]);
+        isScrolling = false;
+    }
 }
 
 function resetHideTimer() {
@@ -172,12 +210,7 @@ function changeclasses(mult, navmult) {
         await scrollToSection(sections[currentSection]);
 
         isScrolling = false;
-        
-        //setTimeout(() => {
-          //  isScrolling = false;
-        //}, 1500); // Adjust this timeout as needed
     }
-
 
     function differentchecks(){
 
@@ -187,6 +220,57 @@ function changeclasses(mult, navmult) {
 
         if (currentSection <= players.length - 1){
             players[currentSection].playVideo();
+            currentytlink = "https://www.youtube.com/watch?v=" + ytvideolist[currentSection].videourl;
+            ytLinkElement.href = currentytlink;
+
+            if(muteStatus){
+                players[currentSection].mute();
+            }
+
+            else{
+                players[currentSection].unMute();
+            }
         }
     }
 
+    function mutebutton(){
+        if (muteStatus){
+            players[currentSection].unMute();
+            muteLogo.style.transistion = "all 0.1s ease";
+            muteLogo.style.opacity = 0;
+            muteLogo.style.zIndex = 1;
+            unMuteLogo.style.transistion = "all 0.1s ease";
+            unMuteLogo.style.opacity = 0.3;
+            unMuteLogo.style.zIndex = 2;
+            muteStatus = false;
+        } else {
+            players[currentSection].mute();
+            unMuteLogo.style.opacity = 0;
+            muteLogo.style.opacity = 1;
+            unMuteLogo.style.zIndex = 1;
+            muteLogo.style.zIndex = 2;
+            muteStatus = true;
+        };
+    }
+
+    function checkmute(){
+        if (muteStatus){
+            setTimeout(function(){
+                muteLogo.style.opacity="1";
+                muteLogo.style.left = '85vw';
+                unMuteLogo.style.left = '85vw';
+                unMuteText.style.opacity = '0';
+            }, 2000);
+
+            unMuteText.style.opacity='1';
+            unMuteLogo.style.left = '50vw';
+            muteLogo.style.left = '50vw';
+            
+            unMuteLogo.style.fill = "red";
+            muteLogo.style.fill = "red";
+        
+            if (!document.hidden){
+                document.getElementById('audiofile').play();
+            }    
+        }
+    }
