@@ -125,7 +125,8 @@ async function startWebsite(){
                 players[0].playVideo();
                 clearInterval(checkPlayerReady);
             }}, 100);
-
+            
+            console.log(getCurrentVideoChannel());
         resolve("Website ist komplett startklar!");
 
     });
@@ -233,44 +234,55 @@ function changeclasses(mult, navmult) {
         }
     }
 
-    function mutebutton(){
-        if (muteStatus){
-            players[currentSection].unMute();
-            muteLogo.style.transistion = "all 0.1s ease";
-            muteLogo.style.opacity = 0;
-            muteLogo.style.zIndex = 1;
-            unMuteLogo.style.transistion = "all 0.1s ease";
-            unMuteLogo.style.opacity = 0.3;
-            unMuteLogo.style.zIndex = 2;
-            muteStatus = false;
-        } else {
-            players[currentSection].mute();
-            unMuteLogo.style.opacity = 0;
-            muteLogo.style.opacity = 1;
-            unMuteLogo.style.zIndex = 1;
-            muteLogo.style.zIndex = 2;
-            muteStatus = true;
-        };
-    }
+function mutebutton(){
+    if (muteStatus){
+       players[currentSection].unMute();
+        muteLogo.style.transistion = "all 0.1s ease";
+        muteLogo.style.opacity = 0;
+        muteLogo.style.zIndex = 1;
+        unMuteLogo.style.transistion = "all 0.1s ease";
+        unMuteLogo.style.opacity = 0.3;
+        unMuteLogo.style.zIndex = 2;
+        muteStatus = false;
+     } else {
+        players[currentSection].mute();
+        unMuteLogo.style.opacity = 0;
+        muteLogo.style.opacity = 1;
+        unMuteLogo.style.zIndex = 1;
+        muteLogo.style.zIndex = 2;
+        muteStatus = true;
+    };
+}
 
-    function checkmute(){
-        if (muteStatus){
-            setTimeout(function(){
-                muteLogo.style.opacity="1";
-                muteLogo.style.left = '85vw';
-                unMuteLogo.style.left = '85vw';
-                unMuteText.style.opacity = '0';
-            }, 2000);
+function checkmute(){
+    if (muteStatus){
+        setTimeout(function(){
+            muteLogo.style.opacity="1";
+            muteLogo.style.left = '85vw';
+            unMuteLogo.style.left = '85vw';
+            unMuteText.style.opacity = '0';
+        }, 2000);
 
-            unMuteText.style.opacity='1';
-            unMuteLogo.style.left = '50vw';
-            muteLogo.style.left = '50vw';
+        unMuteText.style.opacity='1';
+        unMuteLogo.style.left = '50vw';
+        muteLogo.style.left = '50vw';
             
-            unMuteLogo.style.fill = "red";
-            muteLogo.style.fill = "red";
+        unMuteLogo.style.fill = "red";
+        muteLogo.style.fill = "red";
         
-            if (!document.hidden){
-                document.getElementById('audiofile').play();
-            }    
-        }
+        if (!document.hidden){
+            document.getElementById('audiofile').play();
+        }    
     }
+}
+
+// write a function to
+// that gets the channel of the current youtube video
+function getCurrentVideoChannel() {
+    if (players[currentSection]) {
+        const videoId = players[currentSection].getVideoData().video_id;
+        const channel = ytvideolist.find(video => video.videourl === videoId)?.channel;
+        return channel;
+    }
+    return null;
+}
