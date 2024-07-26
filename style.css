@@ -1,3 +1,5 @@
+/* TODO Class Contenwrapper einmal hidden, einmal für den Rest der Seite Swag */
+
 *{
 	margin: 0;
 	padding: 0;	
@@ -18,8 +20,6 @@
 #contentwrapper{
 	position: fixed;
 	top:0;
-	background: rgba(255,255,255,0.21);
-	backdrop-filter: blur(4.5px);
 	width: 100vw;
 	height: 100vh;
 
@@ -30,6 +30,16 @@
 #contentwrapper.hidden{
 	opacity: 0;
 }
+
+#contentwrapper.hideshown{
+	background: rgba(255,255,255,0.21);
+	backdrop-filter: blur(4.5px);
+}
+
+/*
+#contentwrapper.allshown{
+}
+*/
 
 #contentwrapper nav{
 	width: 80.01vw;
@@ -143,6 +153,11 @@
 	transition: opacity 0.5s ease;
 	background-color: white;
 	color: black;
+}
+
+#ytlink.hidden{
+	opacity: 0;
+
 }
 
 

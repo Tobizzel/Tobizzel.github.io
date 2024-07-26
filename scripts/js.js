@@ -126,7 +126,6 @@ async function startWebsite(){
                 clearInterval(checkPlayerReady);
             }}, 100);
             
-            console.log(getCurrentVideoChannel());
         resolve("Website ist komplett startklar!");
 
     });
@@ -148,6 +147,7 @@ function resetHideTimer() {
     clearTimeout(hideTimeout);
     changeclasses(1,1);
     contentWrapperElement.classList.remove("hidden");
+    contentWrapperElement.classList.add("hideshown");
     ytLinkElement.classList.remove("hidden");
     hideTimeout = setTimeout(hideNavigationElements, 4000);
 }
@@ -155,6 +155,7 @@ function resetHideTimer() {
 function hideNavigationElements(){
     changeclasses(0.5, 3);
     contentWrapperElement.classList.add("hidden");
+    contentWrapperElement.classList.remove("hideshown");
     ytLinkElement.classList.add("hidden");
 }
 
@@ -232,11 +233,39 @@ function changeclasses(mult, navmult) {
                 players[currentSection].unMute();
             }
         }
+
+        if (currentSection <= players.length - 1 && previousSection >= players.length - 1){
+            document.addEventListener('mousemove', resetHideTimer);
+            resetHideTimer();
+            if (muteStatus){
+                muteLogo.style.opacity = 1;
+                unMuteLogo.style.opacity = 0;
+            } else {
+                muteLogo.style.opacity = 0;
+                unMuteLogo.style.opacity = 1;
+            }
+        }
+
+        if (currentSection > players.length - 1){
+            clearTimeout(hideTimeout);
+            document.removeEventListener('mousemove', resetHideTimer);
+            contentWrapperElement.classList.remove("hidden");
+            contentWrapperElement.classList.remove("hideshown");
+            changeclasses(1,1);
+            ytLinkElement.classList.add("hidden");
+            muteLogo.style.opacity = 0;
+            unMuteLogo.style.opacity = 0;
+
+            
+
+
+        }    
     }
 
 function mutebutton(){
+
     if (muteStatus){
-       players[currentSection].unMute();
+        players[currentSection].unMute();
         muteLogo.style.transistion = "all 0.1s ease";
         muteLogo.style.opacity = 0;
         muteLogo.style.zIndex = 1;
@@ -244,7 +273,7 @@ function mutebutton(){
         unMuteLogo.style.opacity = 0.3;
         unMuteLogo.style.zIndex = 2;
         muteStatus = false;
-     } else {
+    } else {
         players[currentSection].mute();
         unMuteLogo.style.opacity = 0;
         muteLogo.style.opacity = 1;
@@ -252,37 +281,29 @@ function mutebutton(){
         muteLogo.style.zIndex = 2;
         muteStatus = true;
     };
+
 }
 
 function checkmute(){
-    if (muteStatus){
-        setTimeout(function(){
-            muteLogo.style.opacity="1";
-            muteLogo.style.left = '85vw';
-            unMuteLogo.style.left = '85vw';
-            unMuteText.style.opacity = '0';
-        }, 2000);
+    if (currentSection <= players.length - 1){
+        if (muteStatus){
+            setTimeout(function(){
+                muteLogo.style.opacity="1";
+                muteLogo.style.left = '85vw';
+                unMuteLogo.style.left = '85vw';
+                unMuteText.style.opacity = '0';
+            }, 2000);
 
-        unMuteText.style.opacity='1';
-        unMuteLogo.style.left = '50vw';
-        muteLogo.style.left = '50vw';
+            unMuteText.style.opacity='1';
+            unMuteLogo.style.left = '50vw';
+            muteLogo.style.left = '50vw';
+                
+            unMuteLogo.style.fill = "red";
+            muteLogo.style.fill = "red";
             
-        unMuteLogo.style.fill = "red";
-        muteLogo.style.fill = "red";
-        
-        if (!document.hidden){
-            document.getElementById('audiofile').play();
-        }    
+            if (!document.hidden){
+                document.getElementById('audiofile').play();
+            }    
+        }
     }
-}
-
-// write a function to
-// that gets the channel of the current youtube video
-function getCurrentVideoChannel() {
-    if (players[currentSection]) {
-        const videoId = players[currentSection].getVideoData().video_id;
-        const channel = ytvideolist.find(video => video.videourl === videoId)?.channel;
-        return channel;
-    }
-    return null;
 }
