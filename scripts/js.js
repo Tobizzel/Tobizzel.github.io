@@ -1,10 +1,10 @@
 document.addEventListener("DOMContentLoaded", initSite());
 
 async function initSite(){
-    console.log(await loadYoutubeAPI());
-    console.log(await loadYoutubePlayers());
-    console.log(await initVariables());
-    console.log(await startWebsite());
+    await loadYoutubeAPI();
+    await loadYoutubePlayers();
+    await initVariables();
+    await startWebsite();
 }
 
 async function loadYoutubeAPI(){
@@ -13,28 +13,30 @@ async function loadYoutubeAPI(){
             resolve("Already loaded!");
         }
 
-        var tag = document.createElement('script');
+        const tag = document.createElement('script');
         tag.src = "//www.youtube.com/iframe_api";
-        var firstScriptTag = document.getElementsByTagName('script')[0];
+        const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-        setInterval(function(){if(!(typeof YT =="undefined")){resolve("Sucessfully loaded!")}}, 100 );
+        window.resolveInterval = setInterval(function(){if(!(typeof YT =="undefined")){resolve("Sucessfully loaded!")}}, 100 );
     });    
 }
 
 async function loadYoutubePlayers() {
     return new Promise(function(resolve) {
+        clearInterval(resolveInterval);
+        let readyplayers = 0;
         let x = 0;
-        window.players= [];
+        window.players = [];
         for (let i = 0; i < ytvideolist.length; i++) {
-            divname = "div"+ i;
-            newDiv = document.createElement("video");
+            let divname = "div"+ i;
+            let newDiv = document.createElement("h5");
             newDiv.setAttribute("id", divname);
             newDiv.setAttribute("class", "section")
-            beforeDiv = document.getElementById("NicesVideoDiv");
+            let beforeDiv = document.getElementById("NicesVideoDiv");
             document.body.insertBefore(newDiv, beforeDiv)
 
-            player = new YT.Player (divname, {
+            let player = new YT.Player (divname, {
                 videoId: ytvideolist[i].videourl,
                 height: window.innerHeight,
                 width: window.innerWidth,
@@ -52,28 +54,29 @@ async function loadYoutubePlayers() {
                     'end': ytvideolist[i].startsek + 30,
                 },
                 events: {
+                    'onReady': function(event) {readyplayers = readyplayers + 1},
                     'onStateChange': onPlayerStateChange,
                 }
             });
-        
             players.push(player);
-     
             x = x + 1;
         }
 
-        resmes = "Es wurden " + x + " YT Videos geladen!";
-        var allDivs = document.querySelectorAll("video");
+        const resmes = "Es wurden " + x + " YT Videos geladen!";
+        const allDivs = document.querySelectorAll("h5");
         allDivs.forEach(element => {
             element.remove();
         });
 
-        resolve(resmes);
+        resolveInterval = setInterval(function(){if (readyplayers == ytvideolist.length){resolve(resmes)}}, 100);
     });
 }
 
 async function initVariables(){
 
     return new Promise(function(resolve) {
+        clearInterval(resolveInterval);
+        
         //Globe Variablen setzen
             window.sections = document.querySelectorAll(".section");
             window.currentSection = 0;
@@ -89,19 +92,27 @@ async function initVariables(){
             window.unMuteLogo = document.getElementById('demutelogo');
             window.unMuteText = document.getElementById('entmutetext');
             window.muteInterval = 0;
+            window.getContentDubbedVid = document.getElementsByTagName('video')[0];
+            window.currentytlink = "";
+            
+        // Always Scroll to Top on Reaload
+            sections[0].scrollIntoView();
 
-    
-        resolve("Variables declared!");
+        resolveInterval = setInterval(function(){
+            if(window.scrollY == 0){
+                resolve("Variables declared!");
+            }
+            else{
+                document.querySelectorAll("iframe")[0].scrollIntoView();
+            }}, 100);
     });
 }
 
 async function startWebsite(){
     return new Promise(function(resolve) {
-        // Always Scroll to Top on Reaload
-            document.querySelectorAll("iframe")[0].scrollIntoView();
-
+        clearInterval(resolveInterval);
         // Positionierung der UI Elemente
-            var element3 = document.getElementById('dubbed');
+            const element3 = document.getElementById('dubbed');
             muteLogo.style.opacity="1";
             muteLogo.style.transition='all 2s ease';
             muteLogo.style.left = '85vw';
@@ -109,6 +120,7 @@ async function startWebsite(){
             unMuteLogo.style.left = '85vw';
             element3.style.transition='opacity 6s ease';
             element3.style.opacity = "0";
+    
             
         // Ersten Link setzen    
             currentytlink = "https://www.youtube.com/watch?v=" + ytvideolist[0].videourl;
@@ -116,16 +128,14 @@ async function startWebsite(){
         
         // EventListner initalisieren
             document.addEventListener('wheel', handleScroll);
-            document.addEventListener('mousemove', resetHideTimer)
+            document.addEventListener('mousemove', resetHideTimer);
+            getContentDubbedVid.addEventListener('ended', contentDubVideoControl);
             resetHideTimer();
 
             muteInterval = setInterval(checkmute, 15000);
+            console.log(players[0]);
+            players[0].playVideo();
 
-            const checkPlayerReady = setInterval(function(){if (players[0] && typeof players[0].playVideo === 'function'){
-                players[0].playVideo();
-                clearInterval(checkPlayerReady);
-            }}, 100);
-            
         resolve("Website ist komplett startklar!");
 
     });
@@ -256,11 +266,15 @@ function changeclasses(mult, navmult) {
             muteLogo.style.opacity = 0;
             unMuteLogo.style.opacity = 0;
 
-            
+        if (currentSection == players.length) {
+            getContentDubbedVid.play();
+        }
 
-
+        if (previousSection == players.length) {
+            getContentDubbedVid.pause();
         }    
     }
+}
 
 function mutebutton(){
 
@@ -306,4 +320,13 @@ function checkmute(){
             }    
         }
     }
+}
+
+async function contentDubVideoControl(){
+    previousSection = currentSection;
+    currentSection = currentSection + 1;
+    
+    isScrolling = true;
+    await scrollToSection(sections[currentSection]);
+    isScrolling = false;
 }

@@ -1,71 +1,60 @@
 <!DOCTYPE html>
-
-<!-- TODO Cookie Banner -->
-<!-- TODO Button und nicht Text muss drückbar sein -->
-<!-- TODO Kontaktseite richtiges Formular designen -->
-<!-- TODO About Seite -->
-<!-- TODO Leistungen Seite-->
-
-<!-- Aufgaben bei Deployment -->
-	<!-- TODO Einbinden der richtigen Videos -->
-
-<!-- mögliche Funktionen Zukunft -->
-	<!-- neuer Fullpagescroll -->
-	
-
-
 <html lang="de">
-	<head>
-		<title> Blome Medien Produktion </title>
-		<meta name="viewport" content="width=device-width, initial-scale=1.0">
-		<link rel="stylesheet" href="style.css">
-		<link rel="preconnect" href="https://fonts.googleapis.com">
-		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-		<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
-	</head>
+<head>
+	<title>Blome Medien Produktion</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="UTF-8">
+	<link rel="stylesheet" href="style.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&display=swap" rel="stylesheet">
+</head>
+<body>
 
-	<body>
+	<script src="scripts/ytvideolist.js"></script>
+	<script src="scripts/js.js"></script>
 
-		<script src="scripts/ytvideolist.js"></script>
-
-		
-		
-		<video class="section" id="NicesVideoDiv" width="640" height="360" controls loop>
-			<source src="Contact_eng.mp4" type="video/mp4">
+	<div class="section" id="NicesVideoDiv">
+		<video muted>
+			<source src="videos/Contact_eng.mp4" type="video/mp4">
 			Your browser does not support the video tag.
 		</video>
-		<div class="section" id="KontaktDiv" style="background-color: #2ecc71;"> Richtig cooles Kontaktformular </div>
-		<!-- TODO Kontaktformular einfügen -->
+	</div>
 
+	<div class="section" id="KontaktDiv" style="background-color: #121212;">
+		<form id="contactForm">
+			<label for="name">Name:</label>
+			<input type="text" id="name" name="name" required>
 
-		<script src="scripts/js.js"></script>
+			<label for="email">Email:</label>
+			<input type="email" id="email" name="email" required>
 
-		
-		
+			<label for="message">Message:</label>
+			<textarea id="message" name="message" rows="4" required></textarea>
 
-		
-		<div id="contentwrapper"> <!-- class="hidden"-->
-			<nav>
-				<div id="BMP" class="navigation" onclick="navScroll(document.getElementById('div0'))">  BMP </div> 
-				<div id="Kontakt" class="navigation" onclick="navScroll(document.getElementById('KontaktDiv'))"> <!-- <a href="kontakt.html"> --> Kontakt </a> </div>
-				<div id="About us" class="navigation" onclick="navScroll(document.getElementById('AboutDiv'))">About us</div>
-				<div id="leistung" class="navigation" onclick="navScroll(document.getElementById('LeistungenDiv'))">Leistungen</div>
-				<div id="lang" class="navigation">English</div>
-			</nav>
-			
-			<a id="ytlink">Zum Video</a>
-		</div>
+			<button type="submit">Submit</button>
+		</form>
+	</div>
 
-		<div id="Mute">
-			<div id="dubbed"> Get your content dubbed! </div>
-			<img src="pictures/Mute.svg" id="mutelogo" onclick="mutebutton()">
-			<img src="pictures/entmute.svg" id="demutelogo" onclick="mutebutton()">
-			<div id="entmutetext">Unmute here!</div>
-			<audio id="audiofile">
-				<source src="sounds/Bling.wav" type="audio/wav">
-			</audio>
-		</div>
-		
-	</body>
+	<div id="contentwrapper">
+		<nav>
+			<div id="BMP" class="navigation" onclick="navScroll(document.getElementById('div0'))">BMP</div>
+			<div id="Kontakt" class="navigation" onclick="navScroll(document.getElementById('KontaktDiv'))">Kontakt</div>
+			<div id="About us" class="navigation" onclick="navScroll(document.getElementById('AboutDiv'))">About us</div>
+			<div id="leistung" class="navigation" onclick="navScroll(document.getElementById('LeistungenDiv'))">Leistungen</div>
+			<div id="lang" class="navigation">English</div>
+		</nav>
+		<a id="ytlink">Zum Video</a>
+	</div>
 
+	<div id="Mute">
+		<div id="dubbed">Get your content dubbed!</div>
+		<img src="pictures/Mute.svg" id="mutelogo" onclick="mutebutton()" alt="Mute Logo">
+		<img src="pictures/entmute.svg" id="demutelogo" onclick="mutebutton()" alt="Unmute Logo">
+		<div id="entmutetext">Unmute here!</div>
+		<audio id="audiofile">
+			<source src="sounds/Bling.wav" type="audio/wav">
+		</audio>
+	</div>
+</body>
 </html>
